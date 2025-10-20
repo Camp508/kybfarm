@@ -80,6 +80,9 @@ tank_and_nutrient_controller:
   slle01_mx_level_id: sensor.slle01_mx_level
   slle01_fwt_level_id: sensor.slle01_fwt_level
 
+  # ───── Dissolved Oxygen sensor ─────
+  srjy01_id: sensor.srjy01_mgl
+
   # ───── EC sensors ─────
   ec_gt1_id: sensor.s_ec_01_gt1_ec
   ec_gt2_id: sensor.s_ec_01_gt2_ec

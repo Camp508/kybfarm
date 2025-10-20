@@ -1,6 +1,6 @@
 import appdaemon.plugins.hass.hassapi as hass
 
-class TankAndNutrientControler(hass.Hass):
+class TankAndNutrientController(hass.Hass):
 
     def initialize(self):
         self.enable_id = self.args["enable_id"]
@@ -9,6 +9,8 @@ class TankAndNutrientControler(hass.Hass):
         self.slle01_gt2 = self.args["slle01_gt2_level_id"]
         self.slle01_mx = self.args["slle01_mx_level_id"]
         self.slle01_fwt = self.args["slle01_fwt_level_id"]
+
+        self.srjy01 = self.args["srjy01_id"]
 
         self.ec_gt1 = self.args["ec_gt1_id"]
         self.ec_gt2 = self.args["ec_gt2_id"]
