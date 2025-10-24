@@ -38,7 +38,8 @@ from src.sensor_interfaces import (
     sensor_BMP280_I2C,
     sensor_SCD41_I2C,
     sensor_SLLE01_modbus,
-    sensor_SRJY01_modbus
+    sensor_SRJY01_modbus,
+    sensor_EE671_modbus
 )
 
 # ───────────────────────────────────── Actuator Modules ────────────────────────────────── #
@@ -76,6 +77,7 @@ MQTT_DT_REQ = {
     "slle01_mx":  os.getenv("MQTT_DT_REQ_SLLE01_MX"),
     "slle01_fwt": os.getenv("MQTT_DT_REQ_SLLE01_FWT"),
     "srjy01":     os.getenv("MQTT_DT_REQ_SRJY01"),
+    "ee671":      os.getenv("MQTT_DT_REQ_EE671")
 }
 
 # ───────────── Sensor Command Request Topics (CMD_REQ) ───────────── #
@@ -162,31 +164,33 @@ def on_connect(client, userdata, flags, rc):
 # ───────────────────────────── Activate Sensors & Actuators ───────────────────────────── #
 
 sensor_specs = {
-    "light01": (sensor_LIGHT01_modbus.SLIGHT01, '/dev/ttySC1', 1),
-    "par_gt2": (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
+    "light01":    (sensor_LIGHT01_modbus.SLIGHT01, '/dev/ttySC1', 1),
+    "par_gt2":    (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
 
-    "ec_gt1":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
-    "ec_gt2":  (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 6),
-    "ec_mx":   (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 7),
+    "ec_gt1":     (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
+    "ec_gt2":     (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 6),
+    "ec_mx":      (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 7),
 
-    "ph_gt1":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 8),
-    "ph_gt2":  (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 9),
-    "ph_mx":   (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 10),
+    "ph_gt1":     (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 8),
+    "ph_gt2":     (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 9),
+    "ph_mx":      (sensor_SPH01_modbus.SPH01, '/dev/ttySC1', 10),
 
-    "sym01":   (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
-    
-    "co2voc_1": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
-    "co2voc_2": (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),
+    "sym01":      (sensor_SYM01_modbus.SYM01, '/dev/ttySC1', 12),
+  
+    "co2voc_1":   (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 7),
+    "co2voc_2":   (sensor_CO2_VOC_modbus.CO2_VOC, '/dev/ttySC0', 8),
 
-    "sth01_1": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
-    "sth01_2": (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70), # disconnected (replaced with the second CO2 sensor)
+    "sth01_1":    (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
+    "sth01_2":    (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70), # disconnected (replaced with the second CO2 sensor)
 
     "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
     "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
-    "slle01_mx": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
+    "slle01_mx":  (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
     "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
 
-    "srjy01":  (sensor_SRJY01_modbus.SRJY01, '/dev/ttySC1', 55),
+    "srjy01":     (sensor_SRJY01_modbus.SRJY01, '/dev/ttySC1', 55),
+
+    "ee671":      (sensor_EE671_modbus.EE671, '/dev/ttySC0', 238)
 }
 
 
@@ -315,6 +319,9 @@ on_message_SRJY01 = sensor_handler(sensors["srjy01"], "srjy01")["data"]
 on_message_sth01_1 = sensor_handler(sensors["sth01_1"], "sth01_1")["data"]
 on_message_sth01_2 = sensor_handler(sensors["sth01_2"], "sth01_2")["data"]
 
+# EE671
+on_message_EE671 = sensor_handler(sensors["ee671"], "ee671")["data"]
+
 
 # Setup MQTT client for sensor host
 client = mqtt.Client()
@@ -363,6 +370,9 @@ client.message_callback_add(MQTT_DT_REQ["srjy01"], on_message_SRJY01)
 
 # SYM flow sensor
 client.message_callback_add(MQTT_DT_REQ["sym01"], on_message_SYM01)
+
+# EE671 sensor
+client.message_callback_add(MQTT_DT_REQ["ee671"], on_message_EE671)
 
 
 # Actuators #
