@@ -124,3 +124,33 @@
             "res_topic": "cmd/lamp02/res",
             "intensity": "{{ states('input_number.elixia_2_channel_450nm') | round(0) }}:{{ states('input_number.elixia_2_channel_660nm') | round(0) }}:{{ states('input_number.elixia_2_channel_735nm') | round(0) }}:{{ states('input_number.elixia_2_channel_5700k') | round(0) }}"
           }
+
+
+# ─────────────────────────────── [Lamp 01] Adaptive (CSV) Mode Switch ───────────── #
+- id: lamp1_adaptive_mode_switch
+  alias: "Lamp 1 adaptive mode switch"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.lamp1_adaptive_mode
+  action:
+    - choose:
+        - conditions: "{{ trigger.to_state.state == 'on' }}"
+          sequence:
+            - service: input_boolean.turn_off
+              target:
+                entity_id: input_boolean.lamp1_control_toggle
+            - service: mqtt.publish
+              data:
+                topic: "cfg/lamp01/adaptive_mode"
+                payload: "on"
+                retain: true
+        - conditions: "{{ trigger.to_state.state == 'off' }}"
+          sequence:
+            - service: input_boolean.turn_on
+              target:
+                entity_id: input_boolean.lamp1_control_toggle
+            - service: mqtt.publish
+              data:
+                topic: "cfg/lamp01/adaptive_mode"
+                payload: "off"
+                retain: true

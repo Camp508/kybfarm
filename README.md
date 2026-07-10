@@ -1,6 +1,6 @@
 
 
-# IoT platform for VF: Software Manual
+# IoT platform for VF: Software Manual (NOT UPDATED)
 
 The [Kybfarm Embed repository](https://github.com/mfuglum/kybfarm/) provides
 an open-source Internet of Things (IoT) platform framework for vertical

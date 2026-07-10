@@ -81,18 +81,17 @@ heating_pid:
 
 
 
-tank_and_nutrient_controller:
-  module: tank_and_nutrient_controller
-  class: TankAndNutrientControler
-
-  enable_id: input_boolean.tank_and_nutrient_control
+nutrient_delivery_controller:
+  module: nutrient_delivery_controller
+  class: NutrientDeliveryController
+  enable_id: input_boolean.nutrient_delivery_controller
 
   # ───── Water level sensors ─────
   slle01_gt1_level_id: sensor.slle01_gt1_level
   slle01_gt2_level_id: sensor.slle01_gt2_level
   slle01_mx_level_id: sensor.slle01_mx_level
   slle01_fwt_level_id: sensor.slle01_fwt_level
-
+  
   # ───── Dissolved Oxygen sensor ─────
   srjy01_id: sensor.srjy01_mgl
 
@@ -104,7 +103,6 @@ tank_and_nutrient_controller:
   # ───── Nutrient references ─────
   nutrient_1_ref_id: input_number.nutrient_1_ref
   nutrient_2_ref_id: input_number.nutrient_2_ref
-  nutrient_3_ref_id: input_number.nutrient_3_ref
 
   # ───── Tank capacity references ─────
   mx_capacity_liters: 200
@@ -119,12 +117,11 @@ tank_and_nutrient_controller:
   # ───── Peristaltic pump toggles ─────
   peristaltic_1_id: input_boolean.relay_14
   peristaltic_2_id: input_boolean.relay_15
-  peristaltic_3_id: input_boolean.relay_16
 
   # ───── Solenoid valves ─────
   solenoid_1_id: input_boolean.relay_11
   solenoid_2_id: input_boolean.relay_12
-
+  
   # ───── Water pumps & valves ─────
   water_pump_350_id: input_boolean.relay_1
   water_pump_5k_id: input_boolean.relay_2
@@ -201,3 +198,43 @@ scan_processor:
   nir_band_input: input_number.hsi_nir_band
 
   process_button: input_button.hs_process_hsi
+
+
+alarm_monitor:
+  module: alarm_monitor
+  class: AlarmMonitor
+
+  # ── SMTP / email ──
+  smtp_host: smtp.gmail.com
+  smtp_port: 465                    # SSL port (smtplib.SMTP_SSL)
+  smtp_user: !secret smtp_user      # sender
+  smtp_pass: !secret smtp_pass      # app password
+  recipient: !secret alarm_recipient  # receiver
+  cooldown_hours: 1
+
+  # ── Monitored HA entities ──
+  entity_temperature: sensor.co2_voc_sensor_1_temperature
+  entity_co2: sensor.co2_voc_sensor_2_co2
+  entity_ph_mx: sensor.ph_sensor_mx_ph
+  entities_water_level:
+    - sensor.water_level_sensor_gt1_level_2
+    - sensor.water_level_sensor_gt2_level_2
+    - sensor.water_level_sensor_mx_level_2
+    - sensor.water_level_sensor_fwt_level_2
+
+
+lamp1_csv_schedule:
+  module: lamp_csv_schedule
+  class: LampCsvSchedule
+  label: "Lamp 1 CSV Schedule"
+  toggle_id: input_boolean.lamp1_adaptive_mode
+
+  start_date: "TBD"  # to be modified!
+  first_day: 1
+  last_day: 21
+  csv_file: "20260423_optimal_daily_dli.csv"
+  channel_ids:
+    "450nm": input_number.elixia_1_channel_450nm
+    "660nm": input_number.elixia_1_channel_660nm
+    "735nm": input_number.elixia_1_channel_735nm
+    "5700nm": input_number.elixia_1_channel_5700k

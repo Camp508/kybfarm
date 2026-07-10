@@ -32,8 +32,8 @@ relay_7:
   icon: "mdi:air-humidifier-off"
 
 relay_8:
-  name: "[RL8] Heater"
-  icon: "mdi:radiator"
+  name: "[RL8] Peristaltic Pump 4"
+  icon: "mdi:pump"
 
 relay_9:
   name: "[RL9] Extra"
@@ -88,7 +88,7 @@ co2_pid_enable_toggle:
   icon: "mdi:molecule-co2"
 
 tank_and_nutrient_control:
-  name: "[CTRL] tank_and_nutrient_control"
+  name: "[CTRL] Tank and Nutrient Control"
   icon: "mdi:pot-mix"
 
 intake_fan_toggle:
@@ -106,3 +106,7 @@ lamp1_control_toggle:
 lamp2_control_toggle:
   name: "[CTRL] Lamp 2"
   icon: "mdi:ceiling-light"
+
+lamp1_adaptive_mode:
+  name: "[CTRL] Lamp 1 Adaptive (CSV) Mode"
+  icon: mdi:auto-mode

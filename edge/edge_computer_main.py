@@ -35,8 +35,8 @@ from src.sensor_interfaces import (
     sensor_SPH01_modbus,
     sensor_CO2_VOC_modbus,
     sensor_STH01_modbus,
-    sensor_BMP280_I2C,
-    sensor_SCD41_I2C,
+    #sensor_BMP280_I2C,
+    #sensor_SCD41_I2C,
     sensor_SLLE01_modbus,
     sensor_SRJY01_modbus,
     #sensor_EE671_modbus
@@ -165,6 +165,7 @@ def on_connect(client, userdata, flags, rc):
 
 sensor_specs = {
     "light01":    (sensor_LIGHT01_modbus.SLIGHT01, '/dev/ttySC1', 1),
+    "par_gt1":    (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 33),
     "par_gt2":    (sensor_SPAR02_modbus.SPAR02, '/dev/ttySC1', 34),
 
     "ec_gt1":     (sensor_SEC01_modbus.SEC01, '/dev/ttySC1', 5),
@@ -183,10 +184,10 @@ sensor_specs = {
     "sth01_1":    (sensor_STH01_modbus.STH01, '/dev/ttySC0', 69),
     #"sth01_2":    (sensor_STH01_modbus.STH01, '/dev/ttySC0', 70), - disconnected (replaced with the second CO2 sensor)
 
-    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
-    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
+    "slle01_gt1": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 26),
+    "slle01_gt2": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
     "slle01_mx":  (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 28),
-    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 27),
+    "slle01_fwt": (sensor_SLLE01_modbus.SLLE01, '/dev/ttySC1', 29),
 
     "srjy01":     (sensor_SRJY01_modbus.SRJY01, '/dev/ttySC1', 55),
 

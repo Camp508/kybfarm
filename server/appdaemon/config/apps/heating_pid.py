@@ -4,7 +4,7 @@ class HeatingPID(hass.Hass):
 
     def initialize(self):
         self.enable_entity = self.args["enable_id"]
-        self.sensor_entity = self.args["sensor_id"]      # co2voc_2 temperature
+        self.sensor_entity = self.args["sensor_id"]      # co2voc sensor 2 temperature
         self.ref_entity = self.args["ref_id"]
         self.kp_entity = self.args["kp_id"]
         self.ki_entity = self.args["ki_id"]

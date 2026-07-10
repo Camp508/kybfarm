@@ -270,7 +270,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
-      to: "Initiate calibration for pH 4.01"
+      to: "Start pH Calibration (4.01)"
   action:
     - service: input_text.set_value
       data:
@@ -285,7 +285,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
-      to: "Register calibration for pH 4.01"
+      to: "Confirm pH Calibration (4.01)"
   action:
     - service: input_text.set_value
       data:
@@ -304,7 +304,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
-      to: "Initiate calibration for pH 7.00"
+      to: "Start pH Calibration (7.00)"
   action:
     - service: input_text.set_value
       data:
@@ -319,7 +319,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
-      to: "Register calibration for pH 7.00"
+      to: "Confirm pH Calibration (7.00)"
   action:
     - service: input_text.set_value
       data:
@@ -338,7 +338,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
-      to: "Initiate calibration for pH 10.01"
+      to: "Start pH Calibration (10.01)"
   action:
     - service: input_text.set_value
       data:
@@ -353,7 +353,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt1
       from: null
-      to: "Register calibration for pH 10.01"
+      to: "Confirm pH Calibration (10.01)"
   action:
     - service: input_text.set_value
       data:
@@ -390,7 +390,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
-      to: "Initiate calibration for pH 4.01"
+      to: "Start pH Calibration (4.01)"
   action:
     - service: input_text.set_value
       data:
@@ -405,7 +405,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
-      to: "Register calibration for pH 4.01"
+      to: "Confirm pH Calibration (4.01)"
   action:
     - service: input_text.set_value
       data:
@@ -424,7 +424,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
-      to: "Initiate calibration for pH 7.00"
+      to: "Start pH Calibration (7.00)"
   action:
     - service: input_text.set_value
       data:
@@ -439,7 +439,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
-      to: "Register calibration for pH 7.00"
+      to: "Confirm pH Calibration (7.00)"
   action:
     - service: input_text.set_value
       data:
@@ -458,7 +458,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
-      to: "Initiate calibration for pH 10.01"
+      to: "Start pH Calibration (10.01)"
   action:
     - service: input_text.set_value
       data:
@@ -473,7 +473,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_gt2
       from: null
-      to: "Register calibration for pH 10.01"
+      to: "Confirm pH Calibration (10.01)"
   action:
     - service: input_text.set_value
       data:
@@ -509,7 +509,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_mx
       from: null
-      to: "Initiate calibration for pH 4.01"
+      to: "Start pH Calibration (4.01)"
   action:
     - service: input_text.set_value
       data:
@@ -524,7 +524,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_mx
       from: null
-      to: "Register calibration for pH 4.01"
+      to: "Confirm pH Calibration (4.01)"
   action:
     - service: input_text.set_value
       data:
@@ -543,7 +543,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_mx
       from: null
-      to: "Initiate calibration for pH 7.00"
+      to: "Start pH Calibration (7.00)"
   action:
     - service: input_text.set_value
       data:
@@ -558,7 +558,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_mx
       from: null
-      to: "Register calibration for pH 7.00"
+      to: "Confirm pH Calibration (7.00)"
   action:
     - service: input_text.set_value
       data:
@@ -577,7 +577,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_mx
       from: null
-      to: "Initiate calibration for pH 10.01"
+      to: "Start pH Calibration (10.01)"
   action:
     - service: input_text.set_value
       data:
@@ -592,7 +592,7 @@
     - platform: state
       entity_id: input_select.calibrate_s_ph_01_mx
       from: null
-      to: "Register calibration for pH 10.01"
+      to: "Confirm pH Calibration (10.01)"
   action:
     - service: input_text.set_value
       data:
